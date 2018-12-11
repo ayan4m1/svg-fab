@@ -1,0 +1,37 @@
+{
+  "name": "svg-fab",
+  "version": "0.1.0",
+  "description": "Convert a Sketch SVG into one suitable for import into a Sprite component",
+  "main": "bin/index.js",
+  "bin": {
+    "svg-fab": "bin/index.js"
+  },
+  "scripts": {
+    "build": "gulp"
+  },
+  "keywords": [
+    "sketch",
+    "svg",
+    "outline",
+    "convert",
+    "image",
+    "sprite",
+    "bsd",
+    "ui-kit"
+  ],
+  "author": "ayan4m1 <andrew@bulletlogic.com>",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.19.0",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.27"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/register": "^7.0.0",
+    "del": "^3.0.0",
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0"
+  }
+}
