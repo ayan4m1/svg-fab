@@ -58,7 +58,7 @@ readFile(svgPath, 'utf-8', (error, data) => {
   className="symbol-${svgName}"
   width="${width}"
   height="${height}"
-  viewBox="${viewBox}"
+  viewBox="${viewBox}">
     <path d="${points}" />
 </symbol>`
   );
