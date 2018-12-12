@@ -11,7 +11,7 @@ const build = () =>
     .pipe(babel())
     .pipe(gulp.dest(dst));
 
-const clean = () => del(dst);
+const clean = () => del(`${dst}**/*.js`);
 const watch = () => gulp.watch(src, build);
 
 gulp.task('build', build);

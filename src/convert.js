@@ -1,12 +1,14 @@
+#!/usr/bin/env node
 import { readFile } from 'fs';
+import slugify from 'slugify';
 import commander from 'commander';
 import { DOMParser } from 'xmldom';
 import { useNamespaces } from 'xpath';
 
 commander
-  .version('0.1.0')
   .usage('-n <name> <svg>')
-  .option('-n, --name <value>', 'Name to use in construction of <symbol> element')
+  .option('-n, --name <value>', 'descriptor of the icon')
+  .version('0.1.0', '-v, --version')
   .parse(process.argv);
 
 if (commander.args.length < 1) {
@@ -17,7 +19,7 @@ if (commander.args.length < 1) {
 
 // get our arguments
 const svgPath = commander.args.shift();
-const svgName = commander.name;
+const svgName = slugify(commander.name);
 
 readFile(svgPath, 'utf-8', (error, data) => {
   if (error) {
@@ -50,12 +52,14 @@ readFile(svgPath, 'utf-8', (error, data) => {
   ];
 
   // yes, the indentation is screwy here. leave it be.
-  console.log(`<symbol
+  console.log(`
+<symbol
   id="icon-${svgName}"
   className="symbol-${svgName}"
   width="${width}"
   height="${height}"
   viewBox="${viewBox}"
     <path d="${points}" />
-</symbol>`);
+</symbol>`
+  );
 });
