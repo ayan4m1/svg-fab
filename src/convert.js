@@ -3,9 +3,8 @@ import SVGO from 'svgo';
 import { readFile } from 'fs';
 import slugify from 'slugify';
 import commander from 'commander';
-import outlineStroke from 'svg-outline-stroke';
 
-import { getDocument, getDimensions, getPathData, rescaleDocument } from './xml';
+import { getDocument, getDimensions, getPathData } from './xml';
 
 commander
   .usage('-n <name> <svg>')
@@ -24,14 +23,13 @@ const optimizer = new SVGO({
   plugins: [
     {
       convertPathData: {
-        makeArcs: {
-          threshold: 100,
-          tolerance: 0.01
-        },
         floatPrecision: 2,
         leadingZero: false,
         forceAbsolutePath: true
       }
+    },
+    {
+      removeViewBox: false
     }
   ]
 });
@@ -44,17 +42,10 @@ readFile(svgPath, 'utf-8', async (error, data) => {
     process.exit(1);
   }
 
-  // OK... here we go. First, we convert the SVG to raster and supersample it.
-  // Then we take the enlarged raster and run svg-outline-stroke on it.
-  // Then we revert the viewBox back to what it was before supersampling.
-  // Then we optimize the SVG and extract its path data.
-  const superSampleFactor = 5.0;
-  const originalDoc = getDocument(data);
-  const enlarged = rescaleDocument(originalDoc, superSampleFactor);
-  const stroked = await outlineStroke(enlarged);
-  const strokedDoc = getDocument(stroked);
-  const shrunk = rescaleDocument(strokedDoc, 1 / superSampleFactor);
-  const optimized = await optimizer.optimize(shrunk);
+  const doc = getDocument(data);
+  console.dir(data);
+  const optimized = await optimizer.optimize(doc);
+  console.dir(optimized.data);
   const optimizedDoc = getDocument(optimized.data);
   const [ width, height, viewBox ] = getDimensions(optimizedDoc);
   const points = getPathData(optimizedDoc);
