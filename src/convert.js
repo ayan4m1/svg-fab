@@ -9,7 +9,7 @@ import { getDocument, getDimensions, getPathData } from './xml';
 commander
   .usage('-n <name> <svg>')
   .option('-n, --name <value>', 'descriptor of the icon')
-  .version('0.1.0', '-v, --version')
+  .version('0.1.1', '-v, --version')
   .parse(process.argv);
 
 // show help if required argument is not present
