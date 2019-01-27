@@ -43,9 +43,7 @@ readFile(svgPath, 'utf-8', async (error, data) => {
   }
 
   const doc = getDocument(data);
-  console.dir(data);
   const optimized = await optimizer.optimize(doc);
-  console.dir(optimized.data);
   const optimizedDoc = getDocument(optimized.data);
   const [ width, height, viewBox ] = getDimensions(optimizedDoc);
   const points = getPathData(optimizedDoc);
