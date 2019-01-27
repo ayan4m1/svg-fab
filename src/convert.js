@@ -12,6 +12,7 @@ commander
   .version('0.1.0', '-v, --version')
   .parse(process.argv);
 
+// show help if required argument is not present
 if (commander.args.length < 1) {
   // silly that we have to pass an identity transform here
   commander.outputHelp(text => text);
@@ -42,13 +43,18 @@ readFile(svgPath, 'utf-8', async (error, data) => {
     process.exit(1);
   }
 
+  // extract the SVG file into a string
   const doc = getDocument(data);
+  // apply optimizations
   const optimized = await optimizer.optimize(doc);
+  // extract the SVG from the optimized SVG
   const optimizedDoc = getDocument(optimized.data);
+  // extract dimension metadata from SVG
   const [ width, height, viewBox ] = getDimensions(optimizedDoc);
+  // extract the actual path data from SVG
   const points = getPathData(optimizedDoc);
 
-  // yes, the indentation is screwy here. leave it be.
+  // spit out a blob of HTML for a spritesheet
   console.log(`
 <symbol
   id="icon-${svgName}"
