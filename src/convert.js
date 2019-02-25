@@ -63,7 +63,7 @@ readFile(svgPath, 'utf-8', async (error, data) => {
   height="${height}"
   viewBox="${viewBox}"
 >
-    <path d="${points}" fill-rule="evenodd" />
+    <path d="${points}" fillRule="evenodd" />
 </symbol>`
   );
 });
