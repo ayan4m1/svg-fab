@@ -13,7 +13,7 @@ commander
   .parse(process.argv);
 
 // show help if required argument is not present
-if (commander.args.length < 1) {
+if (commander.args.length < 1 || !commander.args.name) {
   // silly that we have to pass an identity transform here
   commander.outputHelp(text => text);
   process.exit(1);
