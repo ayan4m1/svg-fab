@@ -2,20 +2,22 @@
 import SVGO from 'svgo';
 import { readFile } from 'fs';
 import slugify from 'slugify';
+import { basename } from 'path';
 import commander from 'commander';
 
 import { getDocument, getDimensions, getPathData } from './xml';
 
 commander
-  .usage('-n <name> <svg>')
-  .option('-n, --name <value>', 'descriptor of the icon')
   .version('0.1.1', '-v, --version')
+  .usage('-n [iconName] <file ...>')
+  .option('-n, --name [iconName]', 'descriptor of the icon')
   .parse(process.argv);
 
+const { args } = commander;
+
 // show help if required argument is not present
-if (commander.args.length < 1 || !commander.name) {
-  // silly that we have to pass an identity transform here
-  commander.outputHelp(text => text);
+if (args.length < 1) {
+  commander.outputHelp();
   process.exit(1);
 }
 
@@ -34,28 +36,30 @@ const optimizer = new SVGO({
     }
   ]
 });
-const svgPath = commander.args.shift();
-const svgName = slugify(commander.name);
 
-readFile(svgPath, 'utf-8', async (error, data) => {
-  if (error) {
-    console.error(error);
-    process.exit(1);
-  }
+for (const svgPath of args) {
+  const { iconName } = args;
+  const svgName = slugify(iconName ? iconName : basename(svgPath, '.svg'));
 
-  // extract the SVG file into a string
-  const doc = getDocument(data);
-  // apply optimizations
-  const optimized = await optimizer.optimize(doc);
-  // extract the SVG from the optimized SVG
-  const optimizedDoc = getDocument(optimized.data);
-  // extract dimension metadata from SVG
-  const [ width, height, viewBox ] = getDimensions(optimizedDoc);
-  // extract the actual path data from SVG
-  const points = getPathData(optimizedDoc);
+  readFile(svgPath, 'utf-8', async (error, data) => {
+    if (error) {
+      console.error(error);
+      process.exit(1);
+    }
 
-  // spit out a blob of HTML for a spritesheet
-  console.log(`
+    // extract the SVG file into a string
+    const doc = getDocument(data);
+    // apply optimizations
+    const optimized = await optimizer.optimize(doc);
+    // extract the SVG from the optimized SVG
+    const optimizedDoc = getDocument(optimized.data);
+    // extract dimension metadata from SVG
+    const [width, height, viewBox] = getDimensions(optimizedDoc);
+    // extract the actual path data from SVG
+    const points = getPathData(optimizedDoc);
+
+    // spit out a blob of HTML for a sprite sheet
+    console.log(`
 <symbol
   id="icon-${svgName}"
   className="symbol-${svgName}"
@@ -64,6 +68,6 @@ readFile(svgPath, 'utf-8', async (error, data) => {
   viewBox="${viewBox}"
 >
     <path d="${points}" fillRule="evenodd" />
-</symbol>`
-  );
-});
+</symbol>`);
+  });
+}
