@@ -42,4 +42,4 @@ export const getPathData = doc => {
   }
 
   return element.getAttribute('d');
-}
+};
