@@ -1,4 +1,5 @@
 .*
+*.tgz
 gulpfile.babel.js
 src/
 tests/
