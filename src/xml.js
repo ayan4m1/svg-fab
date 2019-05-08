@@ -23,12 +23,26 @@ export const getDimensions = doc => {
     throw new Error('The document does not contain an <svg> element!');
   }
 
-  return [
-    element.getAttribute('width'),
-    element.getAttribute('height'),
-    element.getAttribute('viewBox')
-  ];
-}
+  // try to infer width and height from viewBox if not present
+  let width, height;
+  if (!element.getAttribute('width') || !element.getAttribute('height')) {
+    const viewBox = element.getAttribute('viewBox').split(' ');
+
+    if (!Array.isArray(viewBox) || viewBox.length < 4) {
+      throw new Error(
+        'Sorry, this icon is has an invalid viewBox, height, and/or width - giving up!'
+      );
+    }
+
+    width = viewBox[2];
+    height = viewBox[3];
+  } else {
+    width = element.getAttribute('width');
+    height = element.getAttribute('height');
+  }
+
+  return [width, height, element.getAttribute('viewBox')];
+};
 
 /**
  * Extract the "d" attribute of the first <path> element of an XML document.
