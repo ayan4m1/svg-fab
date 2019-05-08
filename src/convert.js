@@ -8,8 +8,8 @@ import commander from 'commander';
 import { getDocument, getDimensions, getPathData } from './xml';
 
 commander
-  .version('0.1.1', '-v, --version')
   .usage('-n [iconName] <file ...>')
+  .version('0.2.0', '-v, --version')
   .option('-n, --name [iconName]', 'descriptor of the icon')
   .parse(process.argv);
 
