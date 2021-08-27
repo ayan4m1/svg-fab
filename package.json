@@ -3,6 +3,9 @@
   "version": "0.2.1",
   "description": "Convert a Sketch SVG into one suitable for import into a Sprite component",
   "bin": "./bin/convert.js",
+  "files": [
+    "bin/"
+  ],
   "scripts": {
     "build": "gulp",
     "prepare": "gulp"
