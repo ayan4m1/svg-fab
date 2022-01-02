@@ -25,28 +25,28 @@
   "author": "ayan4m1 <andrew@bulletlogic.com>",
   "license": "MIT",
   "dependencies": {
-    "commander": "^8.1.0",
-    "slugify": "^1.6.0",
-    "svgo": "^2.4.0",
+    "commander": "^8.3.0",
+    "slugify": "^1.6.4",
+    "svgo": "^2.8.0",
     "xmldom": "^0.6.0",
     "xpath": "^0.0.32"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.0",
-    "@babel/eslint-parser": "^7.15.0",
-    "@babel/preset-env": "^7.15.0",
-    "@babel/register": "^7.15.3",
+    "@babel/core": "^7.16.7",
+    "@babel/eslint-parser": "^7.16.5",
+    "@babel/preset-env": "^7.16.7",
+    "@babel/register": "^7.16.7",
     "del": "^6.0.0",
-    "eslint": "^7.32.0",
+    "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-recommended": "^4.1.0",
     "eslint-import-resolver-node": "^0.3.6",
-    "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-import": "^2.25.3",
+    "eslint-plugin-prettier": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.1.2",
-    "prettier": "^2.3.2"
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.4",
+    "prettier": "^2.5.1"
   }
 }
