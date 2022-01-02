@@ -10,13 +10,13 @@ const svgSelector = useNamespaces({ svg: 'http://www.w3.org/2000/svg' });
  * Parse an XML document into a Document object.
  * @param {String} text XML string to parse
  */
-export const getDocument = text => parser.parseFromString(text);
+export const getDocument = (text) => parser.parseFromString(text);
 
 /**
  * Extract the SVG width, height, and viewBox attributes from an XML document.
  * @param {Document} doc XML document
  */
-export const getDimensions = doc => {
+export const getDimensions = (doc) => {
   const element = svgSelector('/svg:svg', doc).shift();
 
   if (!element) {
@@ -25,6 +25,7 @@ export const getDimensions = doc => {
 
   // try to infer width and height from viewBox if not present
   let width, height;
+
   if (!element.getAttribute('width') || !element.getAttribute('height')) {
     const viewBox = element.getAttribute('viewBox').split(' ');
 
@@ -48,7 +49,7 @@ export const getDimensions = doc => {
  * Extract the "d" attribute of the first <path> element of an XML document.
  * @param {Document} doc XML document
  */
-export const getPathData = doc => {
+export const getPathData = (doc) => {
   const element = svgSelector('//svg:path', doc).shift();
 
   if (!element) {

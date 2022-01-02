@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 import { optimize } from 'svgo';
 import { readFile } from 'fs';
 import slugify from 'slugify';
