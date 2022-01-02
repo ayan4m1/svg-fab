@@ -9,7 +9,7 @@ import { getDocument, getDimensions, getPathData } from './xml';
 const program = new Command();
 
 program
-  .version('0.3.0')
+  .version('0.4.0')
   .argument('<files...>')
   .option('--icon-name, --name, -n', 'icon name for generated XML')
   .parse(process.argv);
