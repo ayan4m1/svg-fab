@@ -1,6 +1,6 @@
 {
   "name": "svg-fab",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Convert a Sketch SVG into one suitable for import into a Sprite component",
   "bin": "./bin/convert.js",
   "files": [
