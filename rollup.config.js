@@ -7,7 +7,7 @@ export default {
   input: './src/convert.js',
   output: {
     dir: './bin/',
-    format: 'cjs',
+    format: 'esm',
     exports: 'auto'
   },
   plugins: [

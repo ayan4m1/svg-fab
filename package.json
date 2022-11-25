@@ -2,6 +2,7 @@
   "name": "svg-fab",
   "version": "0.6.0",
   "description": "Convert a Sketch SVG into one suitable for import into a Sprite component",
+  "type": "module",
   "bin": "./bin/convert.js",
   "files": [
     "bin/"
@@ -32,23 +33,23 @@
     "xpath": "^0.0.32"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
+    "@babel/core": "^7.20.2",
     "@babel/eslint-parser": "^7.19.1",
-    "@babel/preset-env": "^7.19.3",
+    "@babel/preset-env": "^7.20.2",
     "@babel/register": "^7.18.9",
-    "@rollup/plugin-babel": "^6.0.0",
-    "@rollup/plugin-eslint": "^9.0.0",
-    "@rollup/plugin-node-resolve": "^14.1.0",
-    "eslint": "^8.25.0",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-eslint": "^9.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-recommended": "^4.1.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.1",
-    "lint-staged": "^13.0.3",
-    "prettier": "^2.7.1",
-    "rollup": "^2.79.1",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.4",
+    "prettier": "^2.8.0",
+    "rollup": "^3.4.0",
     "rollup-plugin-auto-external": "^2.0.0"
   }
 }
